@@ -21,7 +21,7 @@ Aluno: Angelo Maximo Dalmolin
 
 ```bash
 # Pelo Intelij IDEA, va em new, depois em project from version control, depois em git, e cole o link do repositório
-https://github.com/Angelomax04/N1-01-POO/edit/master
+https://github.com/Angelomax04/N1-01-POO/tree/master
 
 # No arquvio MainPrincipal.java, execute o código para ver os resultados dos exercícios
 ```
