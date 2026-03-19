@@ -25,5 +25,5 @@ Aluno: Angelo Maximo Dalmolin
 # No arquvio MainPrincipal.java, execute o código para ver os resultados dos exercícios
 
 # Para acessar a versao de Terminal Acesse/Clone:
-[Terminal Release](https://github.com/Angelomax04/N1-01-POO/releases/tag/Terminal)
+[Terminal Release](https://github.com/Angelomax04/N1-01-POO/releases/tag/TerminalAtt)
 
