@@ -17,11 +17,15 @@ Aluno: Angelo Maximo Dalmolin
 - 09 – Criar uma classe automóvel com seus atributos privados
 - 10 – Criar uma classe avião com seus atributos privados
 
-## 📦 Installation
+## 📦 Instalação
 
 ```bash
 # Pelo Intelij IDEA, va em new, depois em project from version control, depois em git, e cole o link do repositório
 https://github.com/Angelomax04/N1-01-POO
 
 # No arquvio MainPrincipal.java, execute o código para ver os resultados dos exercícios
+
+# Para acessar a versao de Terminal Acesse/Clone:
+https://github.com/Angelomax04/N1-01-POO/releases/tag/Terminal
+
 ```
