@@ -1,30 +1,45 @@
 package src.ex09;
 
-import java.util.Scanner;
+import src.DialogUtil;
 
 public class MainEx09 {
-    public static void executar(Scanner sc) {
+    public static void executar() {
         AutomovelEncapsulado a = new AutomovelEncapsulado();
         int op;
 
         do {
-            System.out.println("\n--- Exercicio 09 - Automovel Encapsulado ---");
-            System.out.println("1 - Cadastre");
-            System.out.println("2 - Liste");
-            System.out.println("3 - Altere");
-            System.out.println("4 - Exclua");
-            System.out.println("0 - Voltar");
-            System.out.print("Escolha: ");
-            op = lerInt(sc);
+            op = DialogUtil.lerOpcaoMenu(
+                    "Exercicio 09 - Automovel Encapsulado",
+                    "1 - Cadastre\n"
+                            + "2 - Liste\n"
+                            + "3 - Altere\n"
+                            + "4 - Exclua\n"
+                            + "0 - Voltar\n\n"
+                            + "Escolha:"
+            );
 
             switch (op) {
                 case 1:
                 case 3:
-                    System.out.print("Placa: "); a.setPlaca(sc.nextLine());
-                    System.out.print("Cor: "); a.setCor(sc.nextLine());
-                    System.out.print("Ano: "); a.setAno(lerInt(sc));
-                    System.out.print("KM: "); a.setKm(lerDouble(sc));
-                    System.out.print("Ligado (true/false): "); a.setLigado(lerBool(sc));
+                    String placa = DialogUtil.lerTexto("Ex09 - Automovel Encapsulado", "Placa:");
+                    if (placa == null) break;
+                    a.setPlaca(placa);
+
+                    String cor = DialogUtil.lerTexto("Ex09 - Automovel Encapsulado", "Cor:");
+                    if (cor == null) break;
+                    a.setCor(cor);
+
+                    Integer ano = DialogUtil.lerInt("Ex09 - Automovel Encapsulado", "Ano:");
+                    if (ano == null) break;
+                    a.setAno(ano);
+
+                    Double km = DialogUtil.lerDouble("Ex09 - Automovel Encapsulado", "KM:");
+                    if (km == null) break;
+                    a.setKm(km);
+
+                    Boolean ligado = DialogUtil.lerBool("Ex09 - Automovel Encapsulado", "Automovel ligado?");
+                    if (ligado == null) break;
+                    a.setLigado(ligado);
                     break;
                 case 2:
                     break;
@@ -34,25 +49,10 @@ public class MainEx09 {
                 case 0:
                     break;
                 default:
-                    System.out.println("Opcao invalida.");
+                    DialogUtil.mostrarErro("Opcao invalida.");
             }
 
-            System.out.println("Estado atual: " + a);
+            DialogUtil.mostrarInfo("Estado atual: " + a);
         } while (op != 0);
-    }
-
-    private static int lerInt(Scanner sc) {
-        while (!sc.hasNextInt()) { System.out.print("Numero invalido: "); sc.next(); }
-        int v = sc.nextInt(); sc.nextLine(); return v;
-    }
-
-    private static double lerDouble(Scanner sc) {
-        while (!sc.hasNextDouble()) { System.out.print("Numero invalido: "); sc.next(); }
-        double v = sc.nextDouble(); sc.nextLine(); return v;
-    }
-
-    private static boolean lerBool(Scanner sc) {
-        while (!sc.hasNextBoolean()) { System.out.print("Digite true ou false: "); sc.next(); }
-        boolean v = sc.nextBoolean(); sc.nextLine(); return v;
     }
 }

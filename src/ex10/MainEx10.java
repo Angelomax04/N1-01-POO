@@ -1,52 +1,76 @@
 package src.ex10;
 
-import java.util.Scanner;
+import src.DialogUtil;
 
 public class MainEx10 {
-    public static void executar(Scanner sc) {
+    public static void executar() {
         AviaoEncapsulado a = new AviaoEncapsulado();
         int op;
 
         do {
-            System.out.println("\n--- Exercicio 10 - Aviao Encapsulado ---");
-            System.out.println("1 - Cadastre");
-            System.out.println("2 - Liste");
-            System.out.println("3 - Altere");
-            System.out.println("4 - Exclua");
-            System.out.println("0 - Voltar");
-            System.out.print("Escolha: ");
-            op = lerInt(sc);
+            op = DialogUtil.lerOpcaoMenu(
+                    "Exercicio 10 - Aviao Encapsulado",
+                    "1 - Cadastre\n"
+                            + "2 - Liste\n"
+                            + "3 - Altere\n"
+                            + "4 - Exclua\n"
+                            + "5 - Decolar\n"
+                            + "6 - Aterrissar\n"
+                            + "7 - Subir\n"
+                            + "8 - Descer\n"
+                            + "0 - Voltar\n\n"
+                            + "Escolha:"
+            );
 
             switch (op) {
                 case 1:
                 case 3:
-                    System.out.print("Modelo: "); a.setModelo(sc.nextLine());
-                    System.out.print("Capacidade: "); a.setCapacidade(lerInt(sc));
-                    System.out.print("Altitude: "); a.setAltitude(lerInt(sc));
-                    System.out.print("Voando (true/false): "); a.setVoando(lerBool(sc));
+                    String modelo = DialogUtil.lerTexto("Ex10 - Aviao Encapsulado", "Modelo:");
+                    if (modelo == null) break;
+                    a.setModelo(modelo);
+
+                    Integer capacidade = DialogUtil.lerInt("Ex10 - Aviao Encapsulado", "Capacidade:");
+                    if (capacidade == null) break;
+                    a.setCapacidade(capacidade);
+
+                    Integer altitude = DialogUtil.lerInt("Ex10 - Aviao Encapsulado", "Altitude:");
+                    if (altitude == null) break;
+                    a.setAltitude(altitude);
+
+                    Boolean voando = DialogUtil.lerBool("Ex10 - Aviao Encapsulado", "Aviao voando?");
+                    if (voando == null) break;
+                    a.setVoando(voando);
                     break;
                 case 2:
                     break;
                 case 4:
                     a.excluir();
                     break;
+                case 5:
+                    a.decolar();
+                    break;
+                case 6:
+                    a.aterrissar();
+                    break;
+                case 7:
+                    Integer subir = DialogUtil.lerInt("Ex10 - Aviao Encapsulado", "Quantos metros deseja subir?");
+                    if (subir != null) {
+                        a.subir(subir);
+                    }
+                    break;
+                case 8:
+                    Integer descer = DialogUtil.lerInt("Ex10 - Aviao Encapsulado", "Quantos metros deseja descer?");
+                    if (descer != null) {
+                        a.descer(descer);
+                    }
+                    break;
                 case 0:
                     break;
                 default:
-                    System.out.println("Opcao invalida.");
+                    DialogUtil.mostrarErro("Opcao invalida.");
             }
 
-            System.out.println("Estado atual: " + a);
+            DialogUtil.mostrarInfo("Estado atual: " + a);
         } while (op != 0);
-    }
-
-    private static int lerInt(Scanner sc) {
-        while (!sc.hasNextInt()) { System.out.print("Numero invalido: "); sc.next(); }
-        int v = sc.nextInt(); sc.nextLine(); return v;
-    }
-
-    private static boolean lerBool(Scanner sc) {
-        while (!sc.hasNextBoolean()) { System.out.print("Digite true ou false: "); sc.next(); }
-        boolean v = sc.nextBoolean(); sc.nextLine(); return v;
     }
 }

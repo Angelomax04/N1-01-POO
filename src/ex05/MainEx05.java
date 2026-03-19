@@ -1,36 +1,53 @@
 package src.ex05;
 
-import java.util.Scanner;
+import src.DialogUtil;
 
 public class MainEx05 {
-    public static void executar(Scanner sc) {
+    public static void executar() {
         MotoAbstracao m = new MotoAbstracao();
-        System.out.println("\n--- Ex05 Moto (preencha os dados) ---");
-        System.out.print("Placa: "); m.placa = sc.nextLine();
-        System.out.print("DENATRAN: "); m.denatran = sc.nextLine();
-        System.out.print("Chassi: "); m.chassi = sc.nextLine();
-        System.out.print("Cor: "); m.cor = sc.nextLine();
-        System.out.print("Cilindradas: "); m.cilindradas = lerInt(sc);
-        System.out.print("Velocidade maxima: "); m.velocidadeMaxima = lerDouble(sc);
+        DialogUtil.mostrarInfo("Ex05 Moto - preencha os dados.");
+
+        String placa = DialogUtil.lerTexto("Ex05 - Moto", "Placa:");
+        if (placa == null) return;
+        m.placa = placa;
+
+        String denatran = DialogUtil.lerTexto("Ex05 - Moto", "DENATRAN:");
+        if (denatran == null) return;
+        m.denatran = denatran;
+
+        String chassi = DialogUtil.lerTexto("Ex05 - Moto", "Chassi:");
+        if (chassi == null) return;
+        m.chassi = chassi;
+
+        String cor = DialogUtil.lerTexto("Ex05 - Moto", "Cor:");
+        if (cor == null) return;
+        m.cor = cor;
+
+        Integer cilindradas = DialogUtil.lerInt("Ex05 - Moto", "Cilindradas:");
+        if (cilindradas == null) return;
+        m.cilindradas = cilindradas;
+
+        Double velMax = DialogUtil.lerDouble("Ex05 - Moto", "Velocidade maxima:");
+        if (velMax == null) return;
+        m.velocidadeMaxima = velMax;
 
         int op;
         do {
-            System.out.println("\nQuem pergunta?");
-            System.out.println("1 Detran");
-            System.out.println("2 Comprador");
-            System.out.println("0 Voltar");
-            System.out.print("Opcao: ");
-            op = lerInt(sc);
+            op = DialogUtil.lerOpcaoMenu(
+                    "Ex05 - Moto",
+                    "Quem pergunta?\n"
+                            + "1 - Detran\n"
+                            + "2 - Comprador\n"
+                            + "0 - Voltar\n\n"
+                            + "Opcao:"
+            );
 
             switch (op) {
-                case 1: System.out.println(m.dadosDetran()); break;
-                case 2: System.out.println(m.dadosComprador()); break;
+                case 1: DialogUtil.mostrarInfo(m.dadosDetran()); break;
+                case 2: DialogUtil.mostrarInfo(m.dadosComprador()); break;
                 case 0: break;
-                default: System.out.println("Opcao invalida.");
+                default: DialogUtil.mostrarErro("Opcao invalida.");
             }
         } while (op != 0);
     }
-
-    private static int lerInt(Scanner sc) { while (!sc.hasNextInt()) sc.next(); int v = sc.nextInt(); sc.nextLine(); return v; }
-    private static double lerDouble(Scanner sc) { while (!sc.hasNextDouble()) sc.next(); double v = sc.nextDouble(); sc.nextLine(); return v; }
 }

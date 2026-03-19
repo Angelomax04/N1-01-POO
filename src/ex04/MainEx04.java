@@ -1,46 +1,75 @@
 package src.ex04;
 
-import java.util.Scanner;
+import src.DialogUtil;
 
 public class MainEx04 {
-    public static void executar(Scanner sc) {
+    public static void executar() {
         Pessoa p = new Pessoa();
-        System.out.println("\n--- Ex04 Pessoa (preencha os dados) ---");
-        System.out.print("Nome: "); p.nome = sc.nextLine();
-        System.out.print("CPF: "); p.cpf = sc.nextLine();
-        System.out.print("RG: "); p.rg = sc.nextLine();
-        System.out.print("Sexo: "); p.sexo = sc.nextLine();
-        System.out.print("Altura: "); p.altura = lerDouble(sc);
-        System.out.print("Peso: "); p.peso = lerDouble(sc);
-        System.out.print("Idade: "); p.idade = lerInt(sc);
-        System.out.print("Velocidade maxima: "); p.velMax = lerDouble(sc);
-        System.out.print("Numero do sapato: "); p.numSapato = lerInt(sc);
-        System.out.print("Tamanho da camisa: "); p.tamCamisa = lerInt(sc);
+        DialogUtil.mostrarInfo("Ex04 Pessoa - preencha os dados.");
+
+        String nome = DialogUtil.lerTexto("Ex04 - Pessoa", "Nome:");
+        if (nome == null) return;
+        p.nome = nome;
+
+        String cpf = DialogUtil.lerTexto("Ex04 - Pessoa", "CPF:");
+        if (cpf == null) return;
+        p.cpf = cpf;
+
+        String rg = DialogUtil.lerTexto("Ex04 - Pessoa", "RG:");
+        if (rg == null) return;
+        p.rg = rg;
+
+        String sexo = DialogUtil.lerTexto("Ex04 - Pessoa", "Sexo:");
+        if (sexo == null) return;
+        p.sexo = sexo;
+
+        Double altura = DialogUtil.lerDouble("Ex04 - Pessoa", "Altura:");
+        if (altura == null) return;
+        p.altura = altura;
+
+        Double peso = DialogUtil.lerDouble("Ex04 - Pessoa", "Peso:");
+        if (peso == null) return;
+        p.peso = peso;
+
+        Integer idade = DialogUtil.lerInt("Ex04 - Pessoa", "Idade:");
+        if (idade == null) return;
+        p.idade = idade;
+
+        Double velMax = DialogUtil.lerDouble("Ex04 - Pessoa", "Velocidade maxima:");
+        if (velMax == null) return;
+        p.velMax = velMax;
+
+        Integer numSapato = DialogUtil.lerInt("Ex04 - Pessoa", "Numero do sapato:");
+        if (numSapato == null) return;
+        p.numSapato = numSapato;
+
+        Integer tamCamisa = DialogUtil.lerInt("Ex04 - Pessoa", "Tamanho da camisa:");
+        if (tamCamisa == null) return;
+        p.tamCamisa = tamCamisa;
 
         int op;
         do {
-            System.out.println("\nQuem pergunta?");
-            System.out.println("1 Sapataria");
-            System.out.println("2 Treinador");
-            System.out.println("3 Medico");
-            System.out.println("4 Alfaiate");
-            System.out.println("5 Faculdade");
-            System.out.println("0 Voltar");
-            System.out.print("Opcao: ");
-            op = lerInt(sc);
+            op = DialogUtil.lerOpcaoMenu(
+                    "Ex04 - Pessoa",
+                    "Quem pergunta?\n"
+                            + "1 - Sapataria\n"
+                            + "2 - Treinador\n"
+                            + "3 - Medico\n"
+                            + "4 - Alfaiate\n"
+                            + "5 - Faculdade\n"
+                            + "0 - Voltar\n\n"
+                            + "Opcao:"
+            );
 
             switch (op) {
-                case 1: System.out.println(p.dadosSapataria()); break;
-                case 2: System.out.println(p.dadosTreinador()); break;
-                case 3: System.out.println(p.dadosMedico()); break;
-                case 4: System.out.println(p.dadosAlfaiate()); break;
-                case 5: System.out.println(p.dadosFaculdade()); break;
+                case 1: DialogUtil.mostrarInfo(p.dadosSapataria()); break;
+                case 2: DialogUtil.mostrarInfo(p.dadosTreinador()); break;
+                case 3: DialogUtil.mostrarInfo(p.dadosMedico()); break;
+                case 4: DialogUtil.mostrarInfo(p.dadosAlfaiate()); break;
+                case 5: DialogUtil.mostrarInfo(p.dadosFaculdade()); break;
                 case 0: break;
-                default: System.out.println("Opcao invalida.");
+                default: DialogUtil.mostrarErro("Opcao invalida.");
             }
         } while (op != 0);
     }
-
-    private static int lerInt(Scanner sc) { while (!sc.hasNextInt()) sc.next(); int v = sc.nextInt(); sc.nextLine(); return v; }
-    private static double lerDouble(Scanner sc) { while (!sc.hasNextDouble()) sc.next(); double v = sc.nextDouble(); sc.nextLine(); return v; }
 }

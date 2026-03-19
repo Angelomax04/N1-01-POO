@@ -1,22 +1,23 @@
 package src.ex03;
 
-import java.util.Scanner;
+import src.DialogUtil;
 
 public class MainEx03 {
-    public static void executar(Scanner sc) {
+    public static void executar() {
         Televisao tv = new Televisao();
         int op;
         do {
-            System.out.println("\n--- Ex03 Televisao ---");
-            System.out.println("1 Ligar");
-            System.out.println("2 Desligar");
-            System.out.println("3 Aumentar canal");
-            System.out.println("4 Diminuir canal");
-            System.out.println("5 Aumentar volume");
-            System.out.println("6 Diminuir volume");
-            System.out.println("0 Voltar");
-            System.out.print("Opcao: ");
-            op = lerInt(sc);
+            op = DialogUtil.lerOpcaoMenu(
+                    "Ex03 - Televisao",
+                    "1 - Ligar\n"
+                            + "2 - Desligar\n"
+                            + "3 - Aumentar canal\n"
+                            + "4 - Diminuir canal\n"
+                            + "5 - Aumentar volume\n"
+                            + "6 - Diminuir volume\n"
+                            + "0 - Voltar\n\n"
+                            + "Opcao:"
+            );
 
             switch (op) {
                 case 1: tv.ligar(); break;
@@ -26,11 +27,9 @@ public class MainEx03 {
                 case 5: tv.aumentarVolume(); break;
                 case 6: tv.diminuirVolume(); break;
                 case 0: break;
-                default: System.out.println("Opcao invalida.");
+                default: DialogUtil.mostrarErro("Opcao invalida.");
             }
-            System.out.println(tv);
+            DialogUtil.mostrarInfo(String.valueOf(tv));
         } while (op != 0);
     }
-
-    private static int lerInt(Scanner sc) { while (!sc.hasNextInt()) sc.next(); int v = sc.nextInt(); sc.nextLine(); return v; }
 }

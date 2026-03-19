@@ -1,44 +1,54 @@
 package src.ex06;
 
-import java.util.Scanner;
+import src.DialogUtil;
 
 public class MainEx06 {
-    public static void executar(Scanner sc) {
+    public static void executar() {
         AutomovelAbstracao a = new AutomovelAbstracao();
 
-        System.out.println("\n--- Exercicio 06 - Automovel (cadastro inicial) ---");
-        System.out.print("Placa: "); a.placa = sc.nextLine();
-        System.out.print("Ano fabricacao: "); a.anoFabricacao = lerInt(sc);
-        System.out.print("Numero DENATRAN: "); a.numeroDenatran = sc.nextLine();
-        System.out.print("KM rodados: "); a.kmRodados = lerDouble(sc);
-        System.out.print("Ano modelo: "); a.anoModelo = lerInt(sc);
-        System.out.print("Cor: "); a.cor = sc.nextLine();
+        DialogUtil.mostrarInfo("Exercicio 06 - Automovel (cadastro inicial)");
+
+        String placa = DialogUtil.lerTexto("Ex06 - Automovel", "Placa:");
+        if (placa == null) return;
+        a.placa = placa;
+
+        Integer anoFabricacao = DialogUtil.lerInt("Ex06 - Automovel", "Ano fabricacao:");
+        if (anoFabricacao == null) return;
+        a.anoFabricacao = anoFabricacao;
+
+        String denatran = DialogUtil.lerTexto("Ex06 - Automovel", "Numero DENATRAN:");
+        if (denatran == null) return;
+        a.numeroDenatran = denatran;
+
+        Double kmRodados = DialogUtil.lerDouble("Ex06 - Automovel", "KM rodados:");
+        if (kmRodados == null) return;
+        a.kmRodados = kmRodados;
+
+        Integer anoModelo = DialogUtil.lerInt("Ex06 - Automovel", "Ano modelo:");
+        if (anoModelo == null) return;
+        a.anoModelo = anoModelo;
+
+        String cor = DialogUtil.lerTexto("Ex06 - Automovel", "Cor:");
+        if (cor == null) return;
+        a.cor = cor;
 
         int op;
         do {
-            System.out.println("\nQuem pergunta?");
-            System.out.println("1 - Detran");
-            System.out.println("2 - Comprador");
-            System.out.println("0 - Voltar");
-            System.out.print("Escolha: ");
-            op = lerInt(sc);
+            op = DialogUtil.lerOpcaoMenu(
+                    "Ex06 - Automovel",
+                    "Quem pergunta?\n"
+                            + "1 - Detran\n"
+                            + "2 - Comprador\n"
+                            + "0 - Voltar\n\n"
+                            + "Escolha:"
+            );
 
             switch (op) {
-                case 1: System.out.println(a.dadosDetran()); break;
-                case 2: System.out.println(a.dadosComprador()); break;
+                case 1: DialogUtil.mostrarInfo(a.dadosDetran()); break;
+                case 2: DialogUtil.mostrarInfo(a.dadosComprador()); break;
                 case 0: break;
-                default: System.out.println("Opcao invalida.");
+                default: DialogUtil.mostrarErro("Opcao invalida.");
             }
         } while (op != 0);
-    }
-
-    private static int lerInt(Scanner sc) {
-        while (!sc.hasNextInt()) { System.out.print("Numero invalido: "); sc.next(); }
-        int v = sc.nextInt(); sc.nextLine(); return v;
-    }
-
-    private static double lerDouble(Scanner sc) {
-        while (!sc.hasNextDouble()) { System.out.print("Numero invalido: "); sc.next(); }
-        double v = sc.nextDouble(); sc.nextLine(); return v;
     }
 }

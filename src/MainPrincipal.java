@@ -1,7 +1,5 @@
 package src;
 
-import java.util.Scanner;
-
 import src.ex01.MainEx01;
 import src.ex02.MainEx02;
 import src.ex03.MainEx03;
@@ -15,75 +13,64 @@ import src.ex10.MainEx10;
 
 public class MainPrincipal {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         int opcao;
 
         do {
-            System.out.println("\n=== MENU PRINCIPAL ===");
-            System.out.println("1 - Exercicio 01 (Aviao)");
-            System.out.println("2 - Exercicio 02 (Barco)");
-            System.out.println("3 - Exercicio 03 (Televisao)");
-            System.out.println("4 - Exercicio 04 (Pessoa - Abstracao)");
-            System.out.println("5 - Exercicio 05 (Moto - Abstracao)");
-            System.out.println("6 - Exercicio 06 (Automovel - Abstracao)");
-            System.out.println("7 - Exercicio 07 (Empregado - Encapsulamento)");
-            System.out.println("8 - Exercicio 08 (Moto - Encapsulamento)");
-            System.out.println("9 - Exercicio 09 (Automovel - Encapsulamento)");
-            System.out.println("10 - Exercicio 10 (Aviao - Encapsulamento)");
-            System.out.println("0 - Sair");
-            System.out.print("Escolha: ");
-            opcao = lerInt(sc);
+            opcao = DialogUtil.lerOpcaoMenu(
+                    "Menu Principal",
+                    "=== MENU PRINCIPAL ===\n"
+                            + "1 - Exercicio 01 (Aviao)\n"
+                            + "2 - Exercicio 02 (Barco)\n"
+                            + "3 - Exercicio 03 (Televisao)\n"
+                            + "4 - Exercicio 04 (Pessoa - Abstracao)\n"
+                            + "5 - Exercicio 05 (Moto - Abstracao)\n"
+                            + "6 - Exercicio 06 (Automovel - Abstracao)\n"
+                            + "7 - Exercicio 07 (Empregado - Encapsulamento)\n"
+                            + "8 - Exercicio 08 (Moto - Encapsulamento)\n"
+                            + "9 - Exercicio 09 (Automovel - Encapsulamento)\n"
+                            + "10 - Exercicio 10 (Aviao - Encapsulamento)\n"
+                            + "0 - Sair\n\n"
+                            + "Escolha:"
+            );
 
             switch (opcao) {
                 case 1:
-                    MainEx01.executar(sc);
+                    MainEx01.executar();
                     break;
                 case 2:
-                    MainEx02.executar(sc);
+                    MainEx02.executar();
                     break;
                 case 3:
-                    MainEx03.executar(sc);
+                    MainEx03.executar();
                     break;
                 case 4:
-                    MainEx04.executar(sc);
+                    MainEx04.executar();
                     break;
                 case 5:
-                    MainEx05.executar(sc);
+                    MainEx05.executar();
                     break;
                 case 6:
-                    MainEx06.executar(sc);
+                    MainEx06.executar();
                     break;
                 case 7:
-                    MainEx07.executar(sc);
+                    MainEx07.executar();
                     break;
                 case 8:
-                    MainEx08.executar(sc);
+                    MainEx08.executar();
                     break;
                 case 9:
-                    MainEx09.executar(sc);
+                    MainEx09.executar();
                     break;
                 case 10:
-                    MainEx10.executar(sc);
+                    MainEx10.executar();
                     break;
                 case 0:
-                    System.out.println("Saindo...");
+                    DialogUtil.mostrarInfo("Saindo...");
                     break;
                 default:
-                    System.out.println("Opcao invalida.");
+                    DialogUtil.mostrarErro("Opcao invalida.");
             }
         } while (opcao != 0);
-
-        sc.close();
-    }
-
-    private static int lerInt(Scanner sc) {
-        while (!sc.hasNextInt()) {
-            System.out.print("Digite um numero valido: ");
-            sc.next();
-        }
-        int v = sc.nextInt();
-        sc.nextLine();
-        return v;
     }
 }
 

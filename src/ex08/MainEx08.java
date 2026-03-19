@@ -1,30 +1,45 @@
 package src.ex08;
 
-import java.util.Scanner;
+import src.DialogUtil;
 
 public class MainEx08 {
-    public static void executar(Scanner sc) {
+    public static void executar() {
         MotoEncapsulada m = new MotoEncapsulada();
         int op;
 
         do {
-            System.out.println("\n--- Exercicio 08 - Moto Encapsulada ---");
-            System.out.println("1 - Cadastre");
-            System.out.println("2 - Liste");
-            System.out.println("3 - Altere");
-            System.out.println("4 - Exclua");
-            System.out.println("0 - Voltar");
-            System.out.print("Escolha: ");
-            op = lerInt(sc);
+            op = DialogUtil.lerOpcaoMenu(
+                    "Exercicio 08 - Moto Encapsulada",
+                    "1 - Cadastre\n"
+                            + "2 - Liste\n"
+                            + "3 - Altere\n"
+                            + "4 - Exclua\n"
+                            + "0 - Voltar\n\n"
+                            + "Escolha:"
+            );
 
             switch (op) {
                 case 1:
                 case 3:
-                    System.out.print("Placa: "); m.setPlaca(sc.nextLine());
-                    System.out.print("Cor: "); m.setCor(sc.nextLine());
-                    System.out.print("Cilindradas: "); m.setCilindradas(lerInt(sc));
-                    System.out.print("Velocidade maxima: "); m.setVelocidadeMaxima(lerDouble(sc));
-                    System.out.print("Ligada (true/false): "); m.setLigada(lerBool(sc));
+                    String placa = DialogUtil.lerTexto("Ex08 - Moto Encapsulada", "Placa:");
+                    if (placa == null) break;
+                    m.setPlaca(placa);
+
+                    String cor = DialogUtil.lerTexto("Ex08 - Moto Encapsulada", "Cor:");
+                    if (cor == null) break;
+                    m.setCor(cor);
+
+                    Integer cilindradas = DialogUtil.lerInt("Ex08 - Moto Encapsulada", "Cilindradas:");
+                    if (cilindradas == null) break;
+                    m.setCilindradas(cilindradas);
+
+                    Double velMax = DialogUtil.lerDouble("Ex08 - Moto Encapsulada", "Velocidade maxima:");
+                    if (velMax == null) break;
+                    m.setVelocidadeMaxima(velMax);
+
+                    Boolean ligada = DialogUtil.lerBool("Ex08 - Moto Encapsulada", "Moto ligada?");
+                    if (ligada == null) break;
+                    m.setLigada(ligada);
                     break;
                 case 2:
                     break;
@@ -34,25 +49,10 @@ public class MainEx08 {
                 case 0:
                     break;
                 default:
-                    System.out.println("Opcao invalida.");
+                    DialogUtil.mostrarErro("Opcao invalida.");
             }
 
-            System.out.println("Estado atual: " + m);
+            DialogUtil.mostrarInfo("Estado atual: " + m);
         } while (op != 0);
-    }
-
-    private static int lerInt(Scanner sc) {
-        while (!sc.hasNextInt()) { System.out.print("Numero invalido: "); sc.next(); }
-        int v = sc.nextInt(); sc.nextLine(); return v;
-    }
-
-    private static double lerDouble(Scanner sc) {
-        while (!sc.hasNextDouble()) { System.out.print("Numero invalido: "); sc.next(); }
-        double v = sc.nextDouble(); sc.nextLine(); return v;
-    }
-
-    private static boolean lerBool(Scanner sc) {
-        while (!sc.hasNextBoolean()) { System.out.print("Digite true ou false: "); sc.next(); }
-        boolean v = sc.nextBoolean(); sc.nextLine(); return v;
     }
 }
