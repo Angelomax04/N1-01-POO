@@ -13,6 +13,10 @@ public class MainEx10 {
             System.out.println("2 - Liste");
             System.out.println("3 - Altere");
             System.out.println("4 - Exclua");
+            System.out.println("5 - Decolar");
+            System.out.println("6 - Aterrissar");
+            System.out.println("7 - Subir");
+            System.out.println("8 - Descer");
             System.out.println("0 - Voltar");
             System.out.print("Escolha: ");
             op = lerInt(sc);
@@ -29,6 +33,20 @@ public class MainEx10 {
                     break;
                 case 4:
                     a.excluir();
+                    break;
+                case 5:
+                    a.decolar();
+                    break;
+                case 6:
+                    a.aterrissar();
+                    break;
+                case 7:
+                    System.out.print("Quantos metros deseja subir? ");
+                    a.subir(lerInt(sc));
+                    break;
+                case 8:
+                    System.out.print("Quantos metros deseja descer? ");
+                    a.descer(lerInt(sc));
                     break;
                 case 0:
                     break;
